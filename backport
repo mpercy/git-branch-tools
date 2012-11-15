@@ -1,0 +1,11 @@
+#!/bin/bash
+#########################
+HASH=$1
+BRANCH=$2
+if [[ -z "$HASH" || -z "$BRANCH" ]]; then
+  echo "Usage: $0 <hash> <branch>"
+  exit 1
+fi
+set -x
+git checkout "$BRANCH"
+git cherry-pick "$HASH"

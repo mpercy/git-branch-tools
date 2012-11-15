@@ -1,0 +1,10 @@
+#!/bin/bash
+#########################
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 <branch1> [<branch2> [<branch3> ...]]"
+  exit 1
+fi
+set -x
+for BRANCH in $*; do
+  (git checkout "$BRANCH" && git push origin "$BRANCH:$BRANCH") || (echo "FAILED"; break)
+done
